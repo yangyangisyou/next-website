@@ -6,11 +6,11 @@ const CardListWrapper = styled.div`
     width: 100%;
 `;
 
-const CardList = ({ list = [{}, {}, {}] }) => {
+const CardList = ({ list, isLoading }) => {
   return (
     <CardListWrapper>
       {
-            list.map((data) => <Card data={data} />)
+            list.map((data) => <Card key={data.id} data={data} isLoading={isLoading} />)
         }
     </CardListWrapper>
   );

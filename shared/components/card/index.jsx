@@ -78,24 +78,44 @@ const HeaderWrapper = styled.div`
 const BodyWrapper = styled.div`
 `;
 
-const Page = () => {
+const Card = ({ data, isLoading }) => {
+  console.log('isLoading ', isLoading);
+  if (isLoading) {
+    return (
+      <CardWrapper>
+        <HeaderWrapper>
+          <div className="header-img skeleton" />
+          <div className="title">
+            <div className="skeleton skeleton-text" />
+            <div className="skeleton skeleton-text" />
+          </div>
+        </HeaderWrapper>
+        <BodyWrapper>
+          <div className="skeleton skeleton-text" />
+          <div className="skeleton skeleton-text" />
+          <div className="skeleton skeleton-text" />
+          <div className="skeleton skeleton-text" />
+        </BodyWrapper>
+      </CardWrapper>
+    );
+  }
+
+  const {
+    title, desc, image, id,
+  } = data;
   return (
     <CardWrapper>
       <HeaderWrapper>
-        <img className="header-img skeleton" src="/defaultAvatar.png" alt="test" />
+        <img className="header-img" src={image} alt={id} />
         <div className="title">
-          <div className="skeleton skeleton-text" />
-          <div className="skeleton skeleton-text" />
+          <div>{title}</div>
         </div>
       </HeaderWrapper>
       <BodyWrapper>
-        <div className="skeleton skeleton-text" />
-        <div className="skeleton skeleton-text" />
-        <div className="skeleton skeleton-text" />
-        <div className="skeleton skeleton-text" />
+        <div>{desc}</div>
       </BodyWrapper>
     </CardWrapper>
   );
 };
 
-export default Page;
+export default Card;

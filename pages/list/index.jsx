@@ -22,7 +22,7 @@ const Page = ({ router }) => {
       <h1>找測驗</h1>
       <CardList
         list={categoryState.examlist}
-        isLoading={categoryState.isLoading}
+        isLoading={categoryState.isLoading.examlist}
       />
     </PageContainer>
   );
