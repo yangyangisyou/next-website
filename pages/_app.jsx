@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import { Toaster } from 'react-hot-toast';

@@ -22,5 +22,15 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/prop-types': [0],
+    'react/jsx-props-no-spreading': [0],
+    'arrow-body-style': 0,
+    'no-console': 0,
+    'max-len': 0,
+    'react/react-in-jsx-scope': 0,
+    'no-underscore-dangle': 0,
+    'no-nested-ternary': 0,
+    'no-else-return': 0,
+    'import/prefer-default-export': 0,
   },
 };
