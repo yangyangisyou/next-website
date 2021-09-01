@@ -7,7 +7,7 @@ const Container = styled.main`
   justify-content: flex-start;
   align-items: center;
   margin: auto;
-  margin-top: 40px;
+  padding: 20px;
   min-height: 100vh;
 `;
 

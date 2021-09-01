@@ -10,7 +10,7 @@ const NavigationWrapper = styled.nav`
 const linkList = [
   {
     title: '找測驗',
-    link: '/',
+    link: '/list',
   },
   {
     title: '找資源',
