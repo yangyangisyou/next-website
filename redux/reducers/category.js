@@ -5,11 +5,12 @@ const initialState = {
   isLoading: {
     examlist: true,
   },
+  questions: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'REQUEST_LOAD_EXAM_LIST': {
+    case 'REQUEST_EXAM_LIST': {
       return {
         ...state,
         isLoading: {
@@ -18,7 +19,7 @@ const reducer = (state = initialState, action) => {
         },
       };
     }
-    case 'LOAD_EXAM_LIST': {
+    case 'EXAM_LIST': {
       toast.success('載入列表');
       return {
         ...state,
@@ -29,7 +30,7 @@ const reducer = (state = initialState, action) => {
         },
       };
     }
-    case 'LOAD_EXAM_LIST_FAILURE': {
+    case 'EXAM_LIST_FAILURE': {
       const { error } = action.payload;
       toast.success(error);
       return {
@@ -38,6 +39,12 @@ const reducer = (state = initialState, action) => {
           ...state.isLoading,
           examlist: false,
         },
+      };
+    }
+    case 'EXAM_QUESTIONS': {
+      return {
+        ...state,
+        questions: action.payload,
       };
     }
     default: {

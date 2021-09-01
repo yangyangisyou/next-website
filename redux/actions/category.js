@@ -1,8 +1,14 @@
 export function loadExamList(numOfPage = 1) {
   return {
-    type: 'REQUEST_LOAD_EXAM_LIST',
+    type: 'REQUEST_EXAM_LIST',
     payload: {
       numOfPage,
     },
+  };
+}
+
+export function loadExamQuestions() {
+  return {
+    type: 'REQUEST_EXAM_QUESTIONS',
   };
 }
