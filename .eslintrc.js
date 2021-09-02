@@ -32,5 +32,6 @@ module.exports = {
     'no-nested-ternary': 0,
     'no-else-return': 0,
     'import/prefer-default-export': 0,
+    camelcase: [0],
   },
 };
