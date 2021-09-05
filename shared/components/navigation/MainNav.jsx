@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import Cookies from 'universal-cookie';
 import MenuButton from './MenuButton';
 import MenuList from './MenuList';
 // import { GiHamburgerMenu } from 'react-icons/gi';
@@ -79,8 +80,11 @@ const MobileLinkListWrapper = styled.ul`
   }
 `;
 
-const AddResourceWrapper = styled.p`
+const UserStatusWrapper = styled.div`
     color: rgba(255,255,255,0.7);
+    .login {
+      cursor: pointer;
+    }
     @media (max-width: 767px) {
       display: none;
     }
@@ -92,7 +96,7 @@ const GroupWrapper = styled.div`
   align-items: center;
 `;
 
-const MainNav = ({ linkList }) => {
+const MainNav = ({ linkList, onLogin, isUserLogin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <MainNavWrapper>
@@ -108,9 +112,15 @@ const MainNav = ({ linkList }) => {
           </LinkListWrapper>
         </GroupWrapper>
         <GroupWrapper>
-          <AddResourceWrapper>
-            <Link href="/">登入</Link>
-          </AddResourceWrapper>
+          <UserStatusWrapper>
+            {/* <Link href="/">登入</Link> */}
+            {/* import Cookies from 'universal-cookie'; */}
+            {
+              isUserLogin
+                ? <p>已登入</p>
+                : <p className="login" onClick={onLogin} onKeyPress={onLogin} role="presentation">登入</p>
+            }
+          </UserStatusWrapper>
           <MobileLinkListWrapper>
             <MenuList
               open={isMenuOpen}

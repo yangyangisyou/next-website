@@ -1,7 +1,11 @@
+import React, { useCallback, useMemo, useEffect } from 'react';
 import styled from '@emotion/styled';
 // import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import Script from 'next/script';
 import MainNav from './MainNav';
 import SubNav from './SubNav';
+import { userLogin, checkLogin } from '../../../redux/actions/user';
 
 const NavigationWrapper = styled.nav`
   white-space: nowrap;
@@ -41,9 +45,21 @@ const CATEGORY_LINK = [
 ];
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+  const isUserLogin = useMemo(() => userState.googleId, [userState]);
+  const onLogin = useCallback(() => dispatch(userLogin()), [userLogin, dispatch]);
+  useEffect(() => {
+    dispatch(checkLogin());
+  }, []);
   return (
     <NavigationWrapper>
-      <MainNav linkList={linkList} />
+      <Script
+        id="stripe-js"
+        src="https://apis.google.com/js/api.js"
+        onLoad={() => window.gapi.load('auth2')}
+      />
+      <MainNav linkList={linkList} onLogin={onLogin} isUserLogin={isUserLogin} />
       {/* <SubNav list={CATEGORY_LINK} /> */}
     </NavigationWrapper>
   );

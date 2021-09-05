@@ -12,6 +12,7 @@ const Page = ({ router }) => {
   const categoryState = useSelector((state) => state.category);
   return (
     <PageContainer>
+      {/* 暫時不開發 */}
       <h1>登入系統</h1>
       <GoogleLogin />
     </PageContainer>
