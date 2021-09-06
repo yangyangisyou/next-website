@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import Cookies from 'universal-cookie';
 import MenuButton from './MenuButton';
 import MenuList from './MenuList';
 // import { GiHamburgerMenu } from 'react-icons/gi';
@@ -35,10 +34,12 @@ const LogoWrapper = styled.div`
 const LinkListWrapper = styled.ul`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   position: relative;
   /* max-width: 500px; */
   li {
     margin: 10px 15px;
+    cursor: pointer;
   }
   @media (max-width: 767px) {
     display: none;
@@ -82,8 +83,12 @@ const MobileLinkListWrapper = styled.ul`
 
 const UserStatusWrapper = styled.div`
     color: rgba(255,255,255,0.7);
-    .login {
+    .login, .logout {
       cursor: pointer;
+    }
+    .avatar {
+      width: 32px;
+      border-radius: 50%;
     }
     @media (max-width: 767px) {
       display: none;
@@ -97,9 +102,11 @@ const GroupWrapper = styled.div`
 `;
 
 const MainNav = ({
-  linkList, onLogin, onLogout, isUserLogin,
+  linkList, onLogin, onLogout, userData,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const avatar = useMemo(() => userData.avatar, [userData]);
+  const isUserLogin = useMemo(() => userData.googleId, [userData]);
   return (
     <MainNavWrapper>
       <FixWrapper>
@@ -117,10 +124,30 @@ const MainNav = ({
           <UserStatusWrapper>
             {/* <Link href="/">登入</Link> */}
             {/* import Cookies from 'universal-cookie'; */}
-            {
+            {/* {
               isUserLogin
                 ? <p className="logout" onClick={onLogout} onKeyPress={onLogout} role="presentation">登出</p>
                 : <p className="login" onClick={onLogin} onKeyPress={onLogin} role="presentation">登入</p>
+            } */}
+            {
+              isUserLogin
+                ? (
+                  <LinkListWrapper>
+                    <li>
+                      <p className="logout" onClick={onLogout} onKeyPress={onLogout} role="presentation">登出</p>
+                    </li>
+                    <li>
+                      <img className="avatar" src={avatar} alt="avatar" />
+                    </li>
+                  </LinkListWrapper>
+                )
+                : (
+                  <LinkListWrapper>
+                    <li>
+                      <p className="login" onClick={onLogin} onKeyPress={onLogin} role="presentation">登入</p>
+                    </li>
+                  </LinkListWrapper>
+                )
             }
           </UserStatusWrapper>
           <MobileLinkListWrapper>

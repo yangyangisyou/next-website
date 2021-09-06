@@ -8,7 +8,7 @@ function* fetchExamList(action) {
   try {
     // const result = yield call(get, url);
     const result = yield call(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       return examlist;
     });
     yield put({ type: 'EXAM_LIST', payload: result });
@@ -21,7 +21,7 @@ function* fetchExam() {
   try {
     // const result = yield call(get, url);
     const result = yield call(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       return readingExams;
     });
     yield put({ type: 'EXAM_QUESTIONS', payload: result });

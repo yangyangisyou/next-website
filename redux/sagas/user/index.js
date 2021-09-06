@@ -64,18 +64,6 @@ function* userLogin() {
   }
 }
 
-// function* userLogin(action) {
-//     try {
-//       const { profileObj, tokenObj } = action.payload;
-//       yield all([
-//         storeUserData(profileObj),
-//         storeToken(tokenObj),
-//       ]);
-//     } catch (error) {
-//       yield oauthFailure(error);
-//     }
-//   }
-
 function* checkLogin() {
   const cookies = new Cookies();
   const accessToken = cookies.get('accessToken');

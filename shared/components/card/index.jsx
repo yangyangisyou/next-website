@@ -79,7 +79,9 @@ const BodyWrapper = styled.div`
 `;
 
 const Card = ({ data, isLoading }) => {
-  console.log('isLoading ', isLoading);
+  const {
+    title, desc, image, id,
+  } = data;
   if (isLoading) {
     return (
       <CardWrapper>
@@ -100,15 +102,15 @@ const Card = ({ data, isLoading }) => {
     );
   }
 
-  const {
-    title, desc, image, id,
-  } = data;
   return (
     <CardWrapper>
       <HeaderWrapper>
         <img className="header-img" src={image} alt={id} />
         <div className="title">
           <div>{title}</div>
+        </div>
+        <div className="action">
+          <div>收藏</div>
         </div>
       </HeaderWrapper>
       <BodyWrapper>

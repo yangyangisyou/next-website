@@ -50,7 +50,7 @@ const Navigation = () => {
     dispatch(checkLogin());
   }, [checkLogin, dispatch]);
   const userState = useSelector((state) => state.user);
-  const isUserLogin = useMemo(() => userState.userData.googleId, [userState.userData]);
+  const userData = useMemo(() => userState.userData, [userState.userData]);
   const onLogin = useCallback(() => dispatch(userLogin()), [userLogin, dispatch]);
   const onLogout = useCallback(() => dispatch(userLogout()), [userLogout, dispatch]);
   return (
@@ -64,7 +64,7 @@ const Navigation = () => {
         linkList={linkList}
         onLogin={onLogin}
         onLogout={onLogout}
-        isUserLogin={isUserLogin}
+        userData={userData}
       />
       {/* <SubNav list={CATEGORY_LINK} /> */}
     </NavigationWrapper>
