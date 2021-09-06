@@ -96,7 +96,9 @@ const GroupWrapper = styled.div`
   align-items: center;
 `;
 
-const MainNav = ({ linkList, onLogin, isUserLogin }) => {
+const MainNav = ({
+  linkList, onLogin, onLogout, isUserLogin,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <MainNavWrapper>
@@ -117,7 +119,7 @@ const MainNav = ({ linkList, onLogin, isUserLogin }) => {
             {/* import Cookies from 'universal-cookie'; */}
             {
               isUserLogin
-                ? <p>已登入</p>
+                ? <p className="logout" onClick={onLogout} onKeyPress={onLogout} role="presentation">登出</p>
                 : <p className="login" onClick={onLogin} onKeyPress={onLogin} role="presentation">登入</p>
             }
           </UserStatusWrapper>

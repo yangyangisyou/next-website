@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo, useEffect } from 'react';
+import React, { useCallback, useMemo, useLayoutEffect } from 'react';
 import styled from '@emotion/styled';
 // import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import Script from 'next/script';
 import MainNav from './MainNav';
 import SubNav from './SubNav';
-import { userLogin, checkLogin } from '../../../redux/actions/user';
+import { userLogin, userLogout, checkLogin } from '../../../redux/actions/user';
 
 const NavigationWrapper = styled.nav`
   white-space: nowrap;
@@ -46,20 +46,26 @@ const CATEGORY_LINK = [
 
 const Navigation = () => {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.user);
-  const isUserLogin = useMemo(() => userState.googleId, [userState]);
-  const onLogin = useCallback(() => dispatch(userLogin()), [userLogin, dispatch]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(checkLogin());
-  }, []);
+  }, [checkLogin, dispatch]);
+  const userState = useSelector((state) => state.user);
+  const isUserLogin = useMemo(() => userState.userData.googleId, [userState.userData]);
+  const onLogin = useCallback(() => dispatch(userLogin()), [userLogin, dispatch]);
+  const onLogout = useCallback(() => dispatch(userLogout()), [userLogout, dispatch]);
   return (
     <NavigationWrapper>
       <Script
-        id="stripe-js"
+        id="google-api"
         src="https://apis.google.com/js/api.js"
         onLoad={() => window.gapi.load('auth2')}
       />
-      <MainNav linkList={linkList} onLogin={onLogin} isUserLogin={isUserLogin} />
+      <MainNav
+        linkList={linkList}
+        onLogin={onLogin}
+        onLogout={onLogout}
+        isUserLogin={isUserLogin}
+      />
       {/* <SubNav list={CATEGORY_LINK} /> */}
     </NavigationWrapper>
   );

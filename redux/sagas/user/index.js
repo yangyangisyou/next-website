@@ -7,15 +7,18 @@ import Cookies from 'universal-cookie';
 
 function* storeUserData(profileObj) {
   const {
-    name, googleId, imageUrl, email,
+    name, googleId, avatar, email,
   } = profileObj;
   const payload = {
-    id: googleId,
+    googleId,
     name,
-    avatar: imageUrl,
+    avatar,
     email,
   };
   localStorage.setItem('googleId', googleId);
+  localStorage.setItem('userName', name);
+  localStorage.setItem('avatar', avatar);
+  localStorage.setItem('email', email);
   yield put({ type: 'STORE_OAUTH_DATA', payload });
 }
 
@@ -43,18 +46,19 @@ function* userLogin() {
     const { Ws, Zb } = signInResult;
     const payload = {
       profileObj: {
-        name: Ws.Pe,
+        userName: Ws.Pe,
         googleId: Ws.US,
-        imageUrl: Ws.wJ,
+        avatar: Ws.wJ,
         email: Ws.Ht,
       },
       tokenObj: Zb,
     };
+    console.log('signInResult ', signInResult);
     yield all([
       storeUserData(payload.profileObj),
       storeToken(payload.tokenObj),
     ]);
-    yield put({ type: 'LOGIN_SUCCESS', payload });
+    yield put({ type: 'LOGIN_SUCCESS', payload: payload.profileObj });
   } catch (error) {
     yield oauthFailure(error);
   }
@@ -77,15 +81,35 @@ function* checkLogin() {
   const accessToken = cookies.get('accessToken');
   const isUserLogin = typeof accessToken === 'string' && accessToken;
   if (isUserLogin) {
-    const googleId = localStorage.getItem('googleId');
-    yield put({ type: 'USER_HAS_LOGIN', payload: { googleId } });
+    const payload = {
+      googleId: localStorage.getItem('googleId'),
+      userName: localStorage.getItem('userName'),
+      avatar: localStorage.getItem('avatar'),
+      email: localStorage.getItem('email'),
+    };
+    yield put({ type: 'USER_HAS_LOGIN', payload });
   } else {
     yield put({ type: 'USER_NOT_LOGIN' });
   }
 }
 
+function* userLogout() {
+  try {
+    const cookies = new Cookies();
+    cookies.remove('accessToken');
+    localStorage.removeItem('googleId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('avatar');
+    localStorage.removeItem('email');
+    yield put({ type: 'USER_HAS_LOGOUT' });
+  } catch (error) {
+    yield put({ type: 'USER_NOT_LOGOUT' });
+  }
+}
+
 function* userSaga() {
   yield takeEvery('OAUTH_LOGIN', userLogin);
+  yield takeEvery('OAUTH_LOGOUT', userLogout);
   yield takeEvery('CHECK_LOGIN', checkLogin);
   yield takeEvery('OAUTH_LOGIN_FAILURE', oauthFailure);
 }

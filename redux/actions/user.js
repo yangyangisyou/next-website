@@ -18,6 +18,12 @@ export function userLogin() {
   };
 }
 
+export function userLogout() {
+  return {
+    type: 'OAUTH_LOGOUT',
+  };
+}
+
 export function checkLogin() {
   return {
     type: 'CHECK_LOGIN',
