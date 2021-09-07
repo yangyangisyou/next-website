@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 
 const CardWrapper = styled.div`
@@ -64,14 +65,23 @@ const HeaderWrapper = styled.div`
     }
 
     .title {
-        font-weight: bold;
-        font-size: 1.25rem;
-        text-transform: capitalize;
         word-wrap: none;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
         flex-grow: 1;
+        
+    }
+
+    .title > a {
+      color: black;
+      font-weight: bold;
+      font-size: 1.25rem;
+      text-transform: capitalize;
+    }
+
+    .action {
+      align-items: flex-end;
     }
 `;
 
@@ -107,7 +117,7 @@ const Card = ({ data, isLoading }) => {
       <HeaderWrapper>
         <img className="header-img" src={image} alt={id} />
         <div className="title">
-          <div>{title}</div>
+          <Link href="/exam">{title}</Link>
         </div>
         <div className="action">
           <div>收藏</div>

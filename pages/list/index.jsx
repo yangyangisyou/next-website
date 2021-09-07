@@ -16,10 +16,10 @@ const ListPage = ({ router }) => {
   const scrollEvent = useCallback(() => {
     const scrolledHeight = window.innerHeight + document.documentElement.scrollTop;
     const websiteHeight = document.documentElement.offsetHeight;
-    if (scrolledHeight === websiteHeight) {
-      console.log('load data');
-      setIsFetchingList(true);
+    const isLoadData = scrolledHeight > websiteHeight * 0.95;
+    if (isLoadData) {
       setNumOPage((prevNumOPage) => prevNumOPage + 1);
+      setIsFetchingList(true);
     }
   }, []);
 
@@ -46,7 +46,7 @@ const ListPage = ({ router }) => {
   return (
     <PageContainer>
       {/* {example} */}
-      <h1>找測驗</h1>
+      <h1>測驗列表</h1>
       <CardList
         list={categoryState.examlist}
         isLoading={categoryState.isLoading.examlist}

@@ -8,7 +8,6 @@ const CardListWrapper = styled.div`
 `;
 
 const CardList = ({ list, isLoading }) => {
-  console.log('isLoading ', isLoading);
   return (
     <CardListWrapper>
       { list.map((data) => <Card key={data.id} data={data} />) }

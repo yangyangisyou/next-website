@@ -4,8 +4,13 @@ const initialState = {
   examlist: [],
   isLoading: {
     examlist: true,
+    questions: true,
   },
-  questions: [],
+  questions: [{
+    no: 0,
+    options: [],
+    desc: '',
+  }],
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,10 +49,32 @@ const reducer = (state = initialState, action) => {
         },
       };
     }
+    case 'REQUEST_EXAM_QUESTIONS': {
+      return {
+        ...state,
+        isLoading: {
+          ...state.isLoading,
+          questions: true,
+        },
+      };
+    }
     case 'EXAM_QUESTIONS': {
       return {
         ...state,
         questions: action.payload,
+        isLoading: {
+          ...state.isLoading,
+          questions: false,
+        },
+      };
+    }
+    case 'EXAM_QUESTIONS_FAILURE': {
+      return {
+        ...state,
+        isLoading: {
+          ...state.isLoading,
+          questions: false,
+        },
       };
     }
     default: {
