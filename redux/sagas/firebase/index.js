@@ -3,19 +3,28 @@ import {
   getDatabase, ref, child, get,
 } from 'firebase/database';
 import firebase from '../../../utils/firebase';
-// import { get } from '../../utils/REST';
-import examlist from '../../../mocks/examlist.json';
-import readingExams from '../../../mocks/example/readingExams.json';
 
 function* fetchExamList(action) {
-  const { numOfPage } = action;
+  const numOfPage = action.payload.numOfPage || 0;
   try {
-    // const result = yield call(get, url);
-    const result = yield call(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      return examlist;
+    const payload = yield call(async () => {
+      const database = ref(getDatabase());
+      const result = get(child(database, `list/${numOfPage}`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            console.log(snapshot.val());
+            return snapshot.val();
+          } else {
+            console.log('No data available');
+          }
+        }).catch((error) => {
+          console.log('no');
+          console.error(error);
+        });
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      return result;
     });
-    yield put({ type: 'EXAM_LIST', payload: result });
+    yield put({ type: 'EXAM_LIST', payload });
   } catch (error) {
     yield put({ type: 'EXAM_LIST_FAILURE', error });
   }
@@ -37,7 +46,7 @@ function* fetchExam() {
           console.log('no');
           console.error(error);
         });
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1200));
       return result;
     });
     yield put({ type: 'EXAM_QUESTIONS', payload });

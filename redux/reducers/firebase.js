@@ -13,6 +13,7 @@ const initialState = {
     ans: '',
   }],
   title: [],
+  hasNextList: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,22 +28,23 @@ const reducer = (state = initialState, action) => {
       };
     }
     case 'EXAM_LIST': {
-      toast.success('載入列表');
+      const { data, next } = action.payload;
       return {
         ...state,
         examlist: [
           ...state.examlist,
-          ...action.payload,
+          ...data,
         ],
         isLoading: {
           ...state.isLoading,
           examlist: false,
         },
+        hasNextList: next,
       };
     }
     case 'EXAM_LIST_FAILURE': {
       const { error } = action.payload;
-      toast.success(error);
+      toast.error(error);
       return {
         ...state,
         isLoading: {

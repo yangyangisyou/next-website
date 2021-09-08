@@ -12,17 +12,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS': {
-      toast.success('登入成功');
+      const { payload } = action;
+      toast.success(`歡迎 ${payload.userName} 加入 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧`);
       return {
         ...state,
         userData: {
           ...state.userData,
-          ...action.payload,
+          ...payload,
         },
       };
     }
     case 'USER_HAS_LOGIN': {
-      toast.success('已登入');
+      toast.success('歡迎回來 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧');
       return {
         ...state,
         userData: {
@@ -32,7 +33,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case 'USER_HAS_LOGOUT': {
-      toast.success('已登出');
+      toast.success('要記得回來喔。･ﾟ･(つд`ﾟ)･ﾟ･');
       return {
         ...state,
         userData: {

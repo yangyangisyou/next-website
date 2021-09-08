@@ -4,7 +4,9 @@ import PageContainer from '../shared/containers/Page';
 const Home = () => {
   return (
     <PageContainer>
-      123
+      <p>哈囉～歡迎試用我的小作品</p>
+      <p>以後可能會做i18n，所以麵包屑的顯示請直接忽略</p>
+      <p>歡迎享用與給意見～</p>
     </PageContainer>
   );
 };
