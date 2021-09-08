@@ -3,15 +3,15 @@ import Head from 'next/head';
 
 const SEO = ({ config }) => {
   const {
-    title, description, keywords, author, copyright, imgLink, link,
+    title, description, keywords, author, copyright, imgLink, link, iconLink,
   } = config;
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="shortcut icon" href="/favicon.png" />
-      <link rel="apple-touch-icon" href="/favicon.png" />
-      <link rel="mask-icon" href="/favicon.png" color="#5bbad5" />
+      <link rel="shortcut icon" href={iconLink} />
+      <link rel="apple-touch-icon" href={iconLink} />
+      <link rel="mask-icon" href={iconLink} color="#5bbad5" />
       {/* <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" /> */}
       <link rel="canonical" href={link} />
       <meta name="description" content={description} />
@@ -47,11 +47,11 @@ const SEO = ({ config }) => {
       {/* Twitter Card data */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:site" content="@島島阿學" />
+      <meta name="twitter:site" content="@喵學" />
       <meta name="twitter:creator" content={author} />
       <meta name="twitter:card" content={imgLink} />
       <meta name="twitter:image:src" content={imgLink} />
-      <meta name="twitter:image:alt" content="daodao logo" />
+      <meta name="twitter:image:alt" content="meow logo" />
     </Head>
   );
 };
