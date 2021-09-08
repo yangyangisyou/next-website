@@ -7,8 +7,11 @@ export function loadExamList(numOfPage = 1) {
   };
 }
 
-export function loadExamQuestions() {
+export function loadExamQuestions(examId) {
   return {
     type: 'REQUEST_EXAM_QUESTIONS',
+    payload: {
+      examId,
+    },
   };
 }

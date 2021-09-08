@@ -30,11 +30,12 @@ function* fetchExamList(action) {
   }
 }
 
-function* fetchExam() {
+function* fetchExam(action) {
+  const examId = 1;
   try {
     const payload = yield call(async () => {
       const database = ref(getDatabase());
-      const result = get(child(database, 'exams/reading/1'))
+      const result = get(child(database, `exams/reading/${examId}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
             console.log(snapshot.val());
