@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
+import * as firebase from 'firebase/app';
+// import { getAnalytics } from 'firebase/analytics';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,8 +14,9 @@ const firebaseConfig = {
   messagingSenderId: '860219610175',
   appId: '1:860219610175:web:f1f1c844665a416143148a',
   measurementId: 'G-EVP48286J3',
+  databaseURL: 'https://meow-learning-324710-default-rtdb.asia-southeast1.firebasedatabase.app',
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
+
+export default firebase;

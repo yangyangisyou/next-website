@@ -4,7 +4,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { useDispatch, useSelector } from 'react-redux';
 import PageContainer from '../../shared/containers/Page';
 import CardList from '../../shared/containers/CardList';
-import { loadExamList } from '../../redux/actions/category';
+import { loadExamList } from '../../redux/actions/firebase';
 import GoogleLogin from '../../shared/components/oauth/GoogleLogin';
 
 const Page = ({ router }) => {

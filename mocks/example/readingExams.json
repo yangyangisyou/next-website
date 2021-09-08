@@ -1,37 +1,47 @@
-[
-    {
-        "no": 1,
-        "desc": "Recyclable materials such as glass and plastic are collected _____ weekly on Mondays and Thursdays.",
-        "options": [
-            "twice", "much", "yet", "far"
-        ]
-    },
-    {
-        "no": 2,
-        "desc": "Due to congestion on the roads, an increasing number of manufacturers _____ transport their goods by train.",
-        "options": [
-            "either", "very", "now", "rather"
-        ]
-    },
-    {
-        "no": 3,
-        "desc": "When customers have a complaint, employees have been instructed _____ supervisor on duty.",
-        "options": [
-            "to inform", "to have informed", "to informing", "to be informed"
-        ]
-    },
-    {
-        "no": 4,
-        "desc": "Old furniture, vintage jewelry, and other _____ are available for sale at this market.",
-        "options": [
-            "quantities", "antiques", "compartments", "statements"
-        ]
-    },
-    {
-        "no": 5,
-        "desc": "_____ the necessary safety precautions are not taken, there could be a higher risk of injury.",
-        "options": [
-            "Just", "If", "That", "From"
-        ]
+{
+    "1": {
+        "title": "TOEIC NO.1",
+        "exams": [
+            {
+                "no": 1,
+                "desc": "Recyclable materials such as glass and plastic are collected _____ weekly on Mondays and Thursdays.",
+                "options": [
+                    "twice", "much", "yet", "far"
+                ],
+                "ans": "A"
+            },
+            {
+                "no": 2,
+                "desc": "Due to congestion on the roads, an increasing number of manufacturers _____ transport their goods by train.",
+                "options": [
+                    "either", "very", "now", "rather"
+                ],
+                "ans": "C"
+            },
+            {
+                "no": 3,
+                "desc": "When customers have a complaint, employees have been instructed _____ supervisor on duty.",
+                "options": [
+                    "to inform", "to have informed", "to informing", "to be informed"
+                ],
+                "ans": "A"
+            },
+            {
+                "no": 4,
+                "desc": "Old furniture, vintage jewelry, and other _____ are available for sale at this market.",
+                "options": [
+                    "quantities", "antiques", "compartments", "statements"
+                ],
+                "ans": "B"
+            },
+            {
+                "no": 5,
+                "desc": "_____ the necessary safety precautions are not taken, there could be a higher risk of injury.",
+                "options": [
+                    "Just", "If", "That", "From"
+                ],
+                "ans": "B"
+            }
+        ]        
     }
-]
+}

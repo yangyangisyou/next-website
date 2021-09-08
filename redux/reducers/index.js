@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import category from './category';
+import firebase from './firebase';
 import user from './user';
 
 const allReducers = combineReducers({
-  category,
+  firebase,
   user,
 });
 

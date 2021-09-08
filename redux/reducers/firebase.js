@@ -10,7 +10,9 @@ const initialState = {
     no: 0,
     options: [],
     desc: '',
+    ans: '',
   }],
+  title: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,9 +61,11 @@ const reducer = (state = initialState, action) => {
       };
     }
     case 'EXAM_QUESTIONS': {
+      const { exams, title } = action.payload;
       return {
         ...state,
-        questions: action.payload,
+        title,
+        questions: exams,
         isLoading: {
           ...state.isLoading,
           questions: false,
