@@ -166,6 +166,7 @@ const MainNav = ({
           <MobileLinkListWrapper>
             <MenuList
               open={isMenuOpen}
+              onClick={() => setIsMenuOpen(false)}
               list={linkList}
             />
             <MenuButton

@@ -17,7 +17,10 @@ const ExamCardWrapper = styled.form`
     font-size: 20px;
     line-height: 30px;
     img {
-        margin: 0 auto;
+      margin: 0 auto;
+    }
+    .loading {
+      max-width: 100%;
     }
 `;
 
@@ -101,6 +104,7 @@ const Exam = ({
     return (
       <ExamCardWrapper>
         <img
+          className="loading"
           src="https://media1.giphy.com/media/BCI6CWVkNUefm/giphy.gif?cid=ecf05e473xigafj7ondwaedmbna2kvxp9afvreudzrnzarj3&rid=giphy.gif&ct=g"
           alt="loading"
         />

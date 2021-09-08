@@ -22,7 +22,7 @@ const MenuListWrapper = styled.div`
     z-index: 100;
 `;
 
-const Menu = ({ open, list, handleLinkClick }) => {
+const Menu = ({ open, list, onClick }) => {
   return (
     <MenuWrapper open={open}>
       {
@@ -34,9 +34,10 @@ const Menu = ({ open, list, handleLinkClick }) => {
                 <MenuItem
                   key={value.title}
                   delay={`${index * 0.1}s`}
-                  onClick={handleLinkClick}
+                  onClick={onClick}
                   text={value.title}
                   link={value.link}
+                  o
                 />
               );
             })
