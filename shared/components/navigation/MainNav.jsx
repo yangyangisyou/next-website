@@ -86,10 +86,19 @@ const UserStatusWrapper = styled.div`
     .login, .logout {
       cursor: pointer;
     }
-    .avatar {
+    .icon {
       width: 32px;
       border-radius: 50%;
     }
+
+    .coin-field {
+      display: flex;
+      align-items: center;
+      span {
+        margin: 10px;
+      }
+    }
+
     @media (max-width: 767px) {
       display: none;
     }
@@ -137,7 +146,11 @@ const MainNav = ({
                       <p className="logout" onClick={onLogout} onKeyPress={onLogout} role="presentation">登出</p>
                     </li>
                     <li>
-                      <img className="avatar" src={avatar} alt="avatar" />
+                      <img className="icon" src={avatar} alt="avatar" />
+                    </li>
+                    <li className="coin-field">
+                      <img className="icon" src="/coin.png" alt="coin" />
+                      <span>0</span>
                     </li>
                   </LinkListWrapper>
                 )
