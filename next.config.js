@@ -1,12 +1,11 @@
-const nextTranslate = require('next-translate')
+const nextTranslate = require('next-translate');
 
-module.exports = nextTranslate({
-  webpack: (config, { isServer, webpack }) => {
-    return config;
-  }
-})
+// module.exports = nextTranslate({
+//   webpack: (config, { isServer, webpack }) => {
+//     return config;
+//   }
+// })
 
-// module.exports = {
-//     reactStrictMode: true,
-// };
-  
+module.exports = {
+  reactStrictMode: true,
+};
