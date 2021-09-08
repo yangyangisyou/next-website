@@ -8,7 +8,7 @@ import { loadExamList } from '../../redux/actions/firebase';
 
 const ListPage = ({ router }) => {
   const dispatch = useDispatch();
-  const categoryState = useSelector((state) => state.category);
+  const categoryState = useSelector((state) => state.firebase);
   const [numOPage, setNumOPage] = useState(1);
   const [isFetchingList, setIsFetchingList] = useState(false);
   const { t, lang } = useTranslation('common');

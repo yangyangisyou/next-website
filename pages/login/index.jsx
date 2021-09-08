@@ -9,7 +9,7 @@ import GoogleLogin from '../../shared/components/oauth/GoogleLogin';
 
 const Page = ({ router }) => {
   const dispatch = useDispatch();
-  const categoryState = useSelector((state) => state.category);
+  // const categoryState = useSelector((state) => state.firebase);
   return (
     <PageContainer>
       {/* 暫時不開發 */}

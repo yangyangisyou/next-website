@@ -6,16 +6,19 @@ import toast from 'react-hot-toast';
 import PageContainer from '../../shared/containers/Page';
 import { loadExamQuestions } from '../../redux/actions/firebase';
 import Exam from '../../components/exam';
+import ExamResult from '../../components/examResult';
 
 const ListPage = ({ router }) => {
   const dispatch = useDispatch();
   const catState = useSelector((state) => state.firebase);
   const [indexOfQuestions, setIndexOfQuestions] = useState(0);
   const [numOfCorrect, setNumOfCorrect] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
   const title = useMemo(() => catState.title, [catState.title]);
   const questions = useMemo(() => catState.questions, [catState.questions]);
   const isLastExam = useMemo(() => indexOfQuestions === questions.length - 1, [indexOfQuestions, questions]);
   const isLoadingExam = useMemo(() => catState.isLoading.questions, [catState.isLoading]);
+  const goToExamListPage = useCallback(() => router.push('/list'), [router]);
   const onSubmitSingleExam = useCallback((selectedOption) => {
     if (selectedOption === questions[indexOfQuestions].ans) {
       setNumOfCorrect((prev) => prev + 1);
@@ -32,6 +35,19 @@ const ListPage = ({ router }) => {
     }
   }, [router.query]);
 
+  if (isFinished) {
+    return (
+      <PageContainer>
+        <h1>{title}</h1>
+        <ExamResult
+          questions={questions}
+          numOfCorrect={numOfCorrect}
+          goToExamListPage={goToExamListPage}
+        />
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer>
       <h1>{title}</h1>
@@ -41,8 +57,8 @@ const ListPage = ({ router }) => {
         onSubmit={onSubmitSingleExam}
         isLastExam={isLastExam}
         isLoadingExam={isLoadingExam}
+        setIsFinished={setIsFinished}
       />
-      {/* <button type="button">開始</button> */}
     </PageContainer>
   );
 };

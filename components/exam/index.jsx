@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import toast from 'react-hot-toast';
+import ButtonWrapper from '../../shared/styles/Button';
 
 const ExamCardWrapper = styled.form`
     display: flex;
@@ -84,22 +85,8 @@ const OptionWrapper = styled.div`
     }
 `;
 
-const StartButtonWrapper = styled.button(
-  (props) => (
-    {
-      width: '80px',
-      height: '30px',
-      borderRadius: '20px',
-      backgroundColor: props.disabled ? '#cccccc' : '#16b9b3',
-      color: 'white',
-      fontWeight: 'normal',
-      cursor: 'pointer',
-    }
-  ),
-);
-
 const Exam = ({
-  question, onSubmit, isLastExam, isLoadingExam,
+  question, onSubmit, isLastExam, isLoadingExam, setIsFinished,
 }) => {
   const [selectedOption, setSelectedOption] = useState('');
   useEffect(() => {
@@ -159,13 +146,26 @@ const Exam = ({
         ))}
       </OptionListWrapper>
       <FooterWrapper>
-        <StartButtonWrapper
-          htmlType="submit"
-          disabled={!question || isLastExam || !selectedOption}
-          tabIndex={0}
-        >
-          下一題
-        </StartButtonWrapper>
+        {
+          isLastExam ? (
+            <ButtonWrapper
+              htmlType="submit"
+              onClick={() => {
+                setIsFinished(true);
+              }}
+            >
+              結束測驗
+            </ButtonWrapper>
+          ) : (
+            <ButtonWrapper
+              htmlType="submit"
+              disabled={!question || isLastExam || !selectedOption}
+              tabIndex={0}
+            >
+              下一題
+            </ButtonWrapper>
+          )
+        }
       </FooterWrapper>
     </ExamCardWrapper>
   );
