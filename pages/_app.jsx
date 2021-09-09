@@ -24,7 +24,7 @@ const App = ({ Component, pageProps }) => {
     keywords: '喵學',
     author: '喵學',
     copyright: '喵學',
-    imgLink: '/logo.png',
+    imgLink: '/catRead.jpeg',
     iconLink: '/logo.png',
     link: `https://meowedu.yyisyou.tw${router.asPath}`,
   }), [router.asPath]);
