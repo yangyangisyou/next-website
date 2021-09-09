@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {
   put, all, call, takeEvery,
 } from 'redux-saga/effects';
@@ -24,9 +25,9 @@ function* storeUserData(profileObj) {
 
 function* storeToken(tokenObj) {
   const cookies = new Cookies();
-  const { access_token, id_token, expires_in } = tokenObj;
-  cookies.set('accessToken', access_token, { maxAge: expires_in });
-  cookies.set('idToken', id_token, { maxAge: expires_in });
+  const { accessToken, idToken } = tokenObj;
+  cookies.set('accessToken', accessToken, { maxAge: 640000 });
+  cookies.set('idToken', idToken, { maxAge: 640000 });
   yield put({ type: 'STORE_OAUTH_TOKEN' });
 }
 
@@ -36,29 +37,32 @@ function* oauthFailure(error) {
 
 function* userLogin() {
   try {
-    const config = {
-      clientId: '860219610175-krhno9gho8fce69cu770kemaagm1j7tl.apps.googleusercontent.com',
-      cookiePolicy: 'single_host_origin',
-    };
-    yield call(window.gapi.auth2.init, config);
-    const GoogleAuth = window.gapi.auth2.getAuthInstance();
-    const signInResult = yield call(GoogleAuth.signIn, config);
-    const { Ws, Zb } = signInResult;
-    const payload = {
-      profileObj: {
-        userName: Ws.Pe,
-        googleId: Ws.US,
-        avatar: Ws.wJ,
-        email: Ws.Ht,
-      },
-      tokenObj: Zb,
-    };
-    console.log('signInResult ', signInResult);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const authResult = yield call(() => new Promise((resolve, reject) => {
+      return firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          const { credential, additionalUserInfo } = result;
+          const {
+            email, name, picture, id,
+          } = additionalUserInfo.profile;
+          const payload = {
+            profileObj: {
+              userName: name,
+              googleId: id,
+              avatar: picture,
+              email,
+            },
+            tokenObj: credential,
+          };
+          resolve(payload);
+        })
+        .catch((error) => reject(error));
+    }));
     yield all([
-      storeUserData(payload.profileObj),
-      storeToken(payload.tokenObj),
+      storeUserData(authResult.profileObj),
+      storeToken(authResult.tokenObj),
     ]);
-    yield put({ type: 'LOGIN_SUCCESS', payload: payload.profileObj });
+    yield put({ type: 'LOGIN_SUCCESS', payload: authResult.profileObj });
   } catch (error) {
     yield oauthFailure(error);
   }

@@ -8,6 +8,7 @@ import GlobalStyle from '../shared/styles/Global';
 import Navigation from '../shared/components/navigation';
 import Footer from '../shared/components/footer';
 import SEO from '../shared/components/seo';
+import '../utils/firebase';
 
 const BodyWrapper = styled.div`
   background-color: #f5f5f5;

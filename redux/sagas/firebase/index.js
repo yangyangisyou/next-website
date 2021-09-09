@@ -2,7 +2,7 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 import {
   getDatabase, ref, child, get,
 } from 'firebase/database';
-import firebase from '../../../utils/firebase';
+// import '../../../utils/firebase';
 
 function* fetchExamList(action) {
   const numOfPage = action.payload.numOfPage || 0;
