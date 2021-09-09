@@ -165,6 +165,10 @@ const MainNav = ({
           </UserStatusWrapper>
           <MobileLinkListWrapper>
             <MenuList
+              isUserLogin={isUserLogin}
+              onLogin={onLogin}
+              onLogout={onLogout}
+              avatar={avatar}
               open={isMenuOpen}
               onClick={() => setIsMenuOpen(false)}
               list={linkList}
