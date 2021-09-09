@@ -16,10 +16,17 @@ function* fetchExamList(action) {
             return snapshot.val();
           } else {
             console.log('No data available');
+            return {
+              data: [],
+              next: false,
+            };
           }
         }).catch((error) => {
-          console.log('no');
-          console.error(error);
+          console.error('error: ', error);
+          return {
+            data: [],
+            next: false,
+          };
         });
       await new Promise((resolve) => setTimeout(resolve, 1200));
       return result;

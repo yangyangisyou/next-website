@@ -6,7 +6,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { useDispatch, useSelector } from 'react-redux';
 import PageContainer from '../../shared/containers/Page';
 import CardList from '../../shared/containers/CardList';
-import { loadExamList } from '../../redux/actions/firebase';
+import { loadExamList, cleanExamList } from '../../redux/actions/firebase';
 
 const ListPage = ({ router }) => {
   const dispatch = useDispatch();
@@ -25,10 +25,14 @@ const ListPage = ({ router }) => {
       setIsFetchingList(true);
     }
   }, []);
+
   useEffect(() => {
     if (router.isReady) {
       dispatch(loadExamList(numOPage));
     }
+    return () => {
+      dispatch(cleanExamList());
+    };
   }, [router.query]);
 
   useEffect(() => {

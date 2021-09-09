@@ -42,6 +42,17 @@ const reducer = (state = initialState, action) => {
         hasNextList: next,
       };
     }
+    case 'RESET_EXAM_LIST': {
+      return {
+        ...state,
+        examlist: [],
+        isLoading: {
+          ...state.isLoading,
+          examlist: true,
+        },
+        hasNextList: true,
+      };
+    }
     case 'EXAM_LIST_FAILURE': {
       const { error } = action.payload;
       toast.error(error);

@@ -15,3 +15,9 @@ export function loadExamQuestions(examId) {
     },
   };
 }
+
+export function cleanExamList() {
+  return {
+    type: 'RESET_EXAM_LIST',
+  };
+}
