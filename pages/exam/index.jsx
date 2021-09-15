@@ -8,7 +8,7 @@ import { loadExamQuestions } from '../../redux/actions/firebase';
 import Exam from '../../components/exam';
 import ExamResult from '../../components/examResult';
 
-const ListPage = ({ router }) => {
+const ExamPage = ({ router }) => {
   const dispatch = useDispatch();
   const catState = useSelector((state) => state.firebase);
   const [indexOfQuestions, setIndexOfQuestions] = useState(0);
@@ -63,4 +63,4 @@ const ListPage = ({ router }) => {
   );
 };
 
-export default ListPage;
+export default ExamPage;

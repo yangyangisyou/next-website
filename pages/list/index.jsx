@@ -1,7 +1,6 @@
 import React, {
   useEffect, useCallback, useState, useMemo,
 } from 'react';
-import styled from '@emotion/styled';
 import useTranslation from 'next-translate/useTranslation';
 import { useDispatch, useSelector } from 'react-redux';
 import PageContainer from '../../shared/containers/Page';

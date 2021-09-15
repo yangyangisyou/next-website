@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 const Container = styled.main`
   display: flex;
@@ -9,14 +9,16 @@ const Container = styled.main`
   margin: auto;
   padding: 20px;
   min-height: 100vh;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 10px auto;
+  }
 `;
 
 const PageContainer = ({ children }) => {
-  return (
-    <Container>
-      {children}
-    </Container>
-  );
+  return <Container>{children}</Container>;
 };
 
 export default PageContainer;
