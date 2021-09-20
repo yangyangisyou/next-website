@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import Link from "next/link";
 import PageContainer from "../shared/containers/Page";
 
 const DescWrapper = styled.p`
@@ -25,6 +26,7 @@ const FlexWrapper = styled.div`
 const ButtonWrapper = styled.div`
   padding: 8px 16px;
   border-radius: 980px;
+  cursor: pointer;
   ${(props) => {
     if (props.type === "ghost") {
       return css`
@@ -48,11 +50,17 @@ const Home = () => {
     <PageContainer>
       <h1>就。很。Meow。</h1>
       <DescWrapper>喵學搶先測試中，功能逐漸新增，敬請期待。</DescWrapper>
-      <FlexWrapper margin={6}>
-        <ButtonWrapper type="normal">馬上使用</ButtonWrapper>
+      <FlexWrapper margin={10}>
+        <ButtonWrapper type="normal">
+          <Link href="/list">馬上使用</Link>
+        </ButtonWrapper>
         <ButtonWrapper type="ghost">
-          逛一下商店
-          {" >"}
+          <Link href="/shop">
+            <p>
+              逛一下商店
+              {" >"}
+            </p>
+          </Link>
         </ButtonWrapper>
       </FlexWrapper>
       <BannerImage src="/catRead.jpeg" alt="cat-read" />
