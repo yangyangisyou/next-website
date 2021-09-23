@@ -1,6 +1,6 @@
 ## 喵學 meow learning
 
-預覽位置：https://meow-learning.pages.dev/
+預覽位置：https://meow-learning.pages.dev/  
 技術：React.js, Next.js, Redux-saga, emotion(CSS-in-JS), firebase, google oauth2.0
 
 ## 預覽
